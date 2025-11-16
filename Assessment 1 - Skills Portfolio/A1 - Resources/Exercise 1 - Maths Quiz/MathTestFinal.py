@@ -23,7 +23,7 @@ def randomInt(difficulty):
 #How The Quiz Funtion Flows
 
 def startQuiz(difficulty):
-    global current_difficulty, score, question_count
+    global current_difficulty, score, question_count  #Adds Global Variables
     current_difficulty = difficulty
     score = 0
     question_count = 0
@@ -41,7 +41,7 @@ def startQuiz(difficulty):
 #Displays The Math Question
 
 def displayProblem():
-    global num1, num2, operation, correct_answer, question_label, answer_entry, submit_btn
+    global num1, num2, operation, correct_answer, question_label, answer_entry, submit_btn  #Adds Global Variables
 
     num1, num2 = randomInt(current_difficulty)
     operation = decideOperation()
@@ -88,19 +88,20 @@ def isCorrect(user_answer, correct_answer):
 #Makes The Player Play Again And Choose A Difficulty After Finishing The Quiz
     
 def displayMenuAfterQuiz():
-    result_label.pack_forget()
+    result_label.pack_forget()     #Hides The Result Screen And The Play Button Once Player Plays Again
     play_again_btn.pack_forget()
 
     title_label.pack(pady=40)
     button1.pack(pady=5)
-    button2.pack(pady=5)
+    button2.pack(pady=5)           #Adds Back The Assets Of The Menu Screen
     button3.pack(pady=5)
 
 #Displays Your Results (Score)
 
 def displayResults():
     question_label.pack_forget()
-    answer_entry.pack_forget()
+    answer_entry.pack_forget()     #Hides The Question Label, User Input Answer, And Submit Button
+    
     submit_btn.pack_forget()
 
     final_score = int((score/10) * 100)
