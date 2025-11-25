@@ -21,7 +21,6 @@ def get_jokes(filename):
 
     return jokes
 
-
 class TheFunny:
     def __init__(self, root):
         self.root = root
@@ -94,6 +93,8 @@ class TheFunny:
 
 
 root = tk.Tk()
+icon = tk.PhotoImage(file="Assessment 1 - Skills Portfolio\A1 - Resources\Exercise 2 - Alexa Joke\minion.png")
+root.iconphoto(False, icon)
 app = TheFunny(root)
 root.mainloop()
 
