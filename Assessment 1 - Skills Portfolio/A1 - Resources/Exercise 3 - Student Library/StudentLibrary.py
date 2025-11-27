@@ -47,6 +47,36 @@ def calc_grade(p):
         return "F"
 
 #TKinter App
+class ThemedInputDialog(simpledialog.Dialog):
+    def __init__(self, parent, title, prompt, icon_path=None, bg="#24273A"):
+        self.prompt = prompt
+        self.bg = bg
+        self.icon_path = icon_path
+        super().__init__(parent, title)
+
+    def body(self, frame):
+        # Window background
+        self.configure(bg=self.bg)
+
+        # Set icon
+        if self.icon_path:
+            try:
+                ico = tk.PhotoImage(file=self.icon_path)
+                self.iconphoto(False, ico)
+                self._icon = ico 
+            except:
+                pass
+
+        tk.Label(frame, text=self.prompt, bg=self.bg, fg="white",
+                 font=("Segoe UI", 10)).pack(pady=5)
+
+        self.entry = tk.Entry(frame, bg="#3E4255", fg="white",
+                              insertbackground="white")
+        self.entry.pack(padx=10, pady=5, fill="x")
+        return self.entry
+
+    def apply(self):
+        self.result = self.entry.get()
 
 class StudentManagerApp:
     def __init__(self, root):
@@ -66,6 +96,10 @@ class StudentManagerApp:
 
         self.output = tk.Text(main_frame, width=80, height=30, bg="#3E4255", fg="white", insertbackground="white", font=("Consolas", 10))
         self.output.grid(row=0, column=0, padx=10, pady=10)
+
+        def themed_input(self, title, prompt):
+            dialog = ThemedInputDialog(self.root, title, prompt, icon_path="Assessment 1 - Skills Portfolio\\A1 - Resources\\Exercise 3 - Student Library\\BSU Logo.png")
+            return dialog.result
 
         #Buttons
 
@@ -184,7 +218,7 @@ class StudentManagerApp:
                 "Number": num,
                 "Name": name,
                 "C1": c1, "C2": c2, "C3": c3,
-                "exam": exam
+                "Exam": exam
             })
             save_students(self.students)
             messagebox.showinfo("Success", "Student Successfully Added!")
